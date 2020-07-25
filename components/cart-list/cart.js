@@ -23,7 +23,15 @@ const CartItem = ({
                           price,
                       }
                   }) => {
-    const classes = useStyles();
+    const classes = makeStyles({
+        root: {
+            maxWidth: 345,
+            textAlign: 'center'
+        },
+        media: {
+            height: 590,
+        },
+    })();
 
     return (
         <Card className={classes.root}>

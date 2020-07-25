@@ -10,9 +10,9 @@ export default function makePagedCollectionStore(itemType) {
         })
         .actions(self => ({
             updatePagesMap(pages) {
-                for (let [key, value] of pages) {
-                    self.pages.set(key, value)
-                }
+              for (let key in pages){
+                    self.pages.set(key, pages[key])
+              }
             },
             updateData(data) {
                 const pagesMap = chunkMap(data, self.pagination.resultPerPage);

@@ -6,16 +6,6 @@ import CardContent from "@material-ui/core/CardContent";
 import {makeStyles} from '@material-ui/core/styles';
 import Link from "@material-ui/core/Link";
 
-const useStyles = makeStyles({
-    root: {
-        maxWidth: 345,
-        textAlign: 'center'
-    },
-    media: {
-        height: 590,
-    },
-});
-
 const CartItem = ({
                       data: {
                           name,

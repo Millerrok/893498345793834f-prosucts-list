@@ -12,7 +12,7 @@ const SearchStore = types
     }))
     .actions(self => ({
         update(query) {
-            self.query = query.trim()
+            self.query = query.trim();
         }
     }));
 

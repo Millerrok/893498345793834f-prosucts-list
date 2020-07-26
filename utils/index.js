@@ -1,9 +1,9 @@
-import RESTClient from './rest-client'
 import chunkMap from "./chunk-map";
 import detectMobile from "./detect-mobile";
+import compose from "./compose";
 
 export {
-    RESTClient,
-    chunkMap,
-    detectMobile
+    detectMobile,
+    compose,
+    chunkMap
 };

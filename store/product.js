@@ -2,20 +2,19 @@ import {getRoot, types} from "mobx-state-tree";
 
 const ProductStore = types
     .model('ProductStore', {
-        code: types.string,
-        price: types.string,
-        productName: types.string,
-        imageURLs: types.array(types.string),
         mobileImageURLs: types.array(types.string),
+        imageURLs: types.array(types.string),
+        productName: types.string,
+        price: types.string,
+        code: types.string,
         imageIndex: 0
     })
     .views(self => ({
         containInProductName(query) {
             return self.productName
                 .toLowerCase()
-                .includes(query);
+                .includes(query.toLowerCase());
         },
-
         get name() {
             return self.productName;
         },

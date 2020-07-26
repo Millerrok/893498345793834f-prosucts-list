@@ -2,17 +2,21 @@ import {types} from "mobx-state-tree";
 import PaginationStore from "./pagination";
 import {chunkMap} from "../utils";
 
+const updateMapByObject = (map, obj) => {
+    for (let [key, value] of obj) {
+        map.set(key, value)
+    }
+};
+
 export default function makePagedCollectionStore(itemType) {
     return types
         .model('PagedCollectionStore', {
-            pages: types.map(types.array(itemType)),
             pagination: types.optional(PaginationStore, {}),
+            pages: types.map(types.array(itemType)),
         })
         .actions(self => ({
             updatePagesMap(pages) {
-              for (let key in pages){
-                    self.pages.set(key, pages[key])
-              }
+                updateMapByObject(self.pages, pages)
             },
             updateData(data) {
                 const pagesMap = chunkMap(data, self.pagination.resultPerPage);

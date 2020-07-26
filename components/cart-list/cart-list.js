@@ -5,7 +5,6 @@ import Typography from "@material-ui/core/Typography";
 import {inject, observer} from "mobx-react";
 import {Box} from "@material-ui/core";
 
-
 const WithoutCarts = () => (
     <Typography variant="subtitle1" component="p" color="textSecondary">
         Has no data to show
@@ -16,7 +15,7 @@ const WithoutCarts = () => (
 class CartList extends React.Component {
     makeCart(cart) {
         return (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={cart.code}>
+            <Grid item xs={6} sm={4} md={3} key={cart.code} align="center">
                 <CartItem data={cart}/>
             </Grid>
         )
@@ -34,7 +33,7 @@ class CartList extends React.Component {
 
         return (
             <Box flexGrow={1}>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} justify="space-evenly">
                     {carts.map(this.makeCart)}
                 </Grid>
             </Box>

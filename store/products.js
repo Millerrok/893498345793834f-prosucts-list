@@ -6,7 +6,7 @@ const ProductsStore2 =
     types
         .model('ProductsStore', {
             isLoading: true,
-            collection: ProductsPagedCollection,
+            collection: types.optional(ProductsPagedCollection, {}),
             search: types.optional(SearchStore, {
                 query: ""
             }),

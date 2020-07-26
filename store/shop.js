@@ -9,7 +9,7 @@ const ShopStore =
         })
         .views(() => ({
             get isMobile() {
-                return detectMobile
+                return detectMobile();
             }
         }));
 

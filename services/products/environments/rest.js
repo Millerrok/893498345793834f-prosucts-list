@@ -1,15 +1,5 @@
-import {RESTClient} from "../../../utils";
-
-const API = {
-    URL: 'https://raw.githubusercontent.com/traa/apiplp/master',
-    makeUrl(end) {
-        return `${this.URL}${end}`
-    },
-};
-
-const ENDPOINTS = {
-    PRODUCTS: '/db.json'
-};
+import RESTClient from "../../rest-client";
+import {API, ENDPOINTS} from "../../urls";
 
 export default class ProductsRESTClient extends RESTClient {
     fetchProducts = async () => {

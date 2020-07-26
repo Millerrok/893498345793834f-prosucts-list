@@ -1,25 +1,42 @@
 import Pagination from "@material-ui/lab/Pagination";
 import React from "react";
-import Box from "@material-ui/core/Box";
 import {inject, observer} from "mobx-react";
+import {withStyles} from "@material-ui/core";
+import {compose} from "../../utils";
 
 const MINIMAL_PAGES_COUNT_TO_SHOW = 2;
 
-const ListPagination = ({shop}) => {
+const ListPagination = ({shop, classes}) => {
     const {currentPage, totalPages, updateCurrent} = shop.products.collection.pagination;
-    if (totalPages < MINIMAL_PAGES_COUNT_TO_SHOW) {
-        return null;
-    }
-
     const onPageChanged = (event, value) => {
         updateCurrent(value);
     };
 
+    if (totalPages < MINIMAL_PAGES_COUNT_TO_SHOW) {
+        return null;
+    }
+
     return (
-        <Box>
-            <Pagination count={totalPages} page={currentPage} onChange={onPageChanged}/>
-        </Box>
+        <Pagination
+            className={classes.pagination}
+            count={totalPages}
+            page={currentPage}
+            defaultPage={6}
+            siblingCount={0}
+            boundaryCount={2}
+            onChange={onPageChanged}/>
     );
 };
 
-export default inject('shop')(observer(ListPagination));
+const styles = {
+    pagination: {
+        margin: '15px auto',
+        width: '267px',
+    }
+};
+
+export default compose(
+    withStyles(styles),
+    inject('shop'),
+    observer,
+)(ListPagination);

@@ -27,7 +27,6 @@ export default function makePagedCollectionStore(itemType) {
             },
             updatePagesWithSearch() {
                 const {search: {query}} = self;
-
                 const filtered = self.data.filter(product =>
                     product.productName
                         .toLowerCase()

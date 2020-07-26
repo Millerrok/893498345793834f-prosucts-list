@@ -18,20 +18,23 @@ const ListPagination = ({shop, classes}) => {
     }
 
     return (
-        <Pagination className={classes.pagination}
-                    count={totalPages}
-                    page={currentPage}
-                    defaultPage={6}
-                    siblingCount={0}
-                    boundaryCount={2}
-                    onChange={onPageChanged}/>
+        <Pagination
+            className={classes.pagination}
+            count={totalPages}
+            page={currentPage}
+            defaultPage={6}
+            siblingCount={0}
+            boundaryCount={2}
+            onChange={onPageChanged}/>
     );
 };
 
 const styles = {
     pagination: {
-        margin: '15px auto',
-        maxWidth: '267px',
+        margin: '15px 0',
+        '& > ul': {
+            justifyContent: 'center'
+        }
     }
 };
 

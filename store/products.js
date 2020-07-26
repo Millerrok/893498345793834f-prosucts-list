@@ -1,6 +1,5 @@
 import ProductsPagedCollection from "./products-paged-collection";
 import {getEnv, getParent, types} from "mobx-state-tree";
-import SearchStore from "./search";
 
 const ProductsStore =
     types

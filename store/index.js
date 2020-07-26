@@ -1,7 +1,7 @@
 import {addMiddleware, onSnapshot} from "mobx-state-tree";
 
 import ShopStore from "./shop";
-import ProductsRESTClient from "../services/products/environments/rest";
+import {ProductsRESTClient} from "../services/products/environments";
 import {actionLogger} from "mst-middlewares";
 
 const initialState = {

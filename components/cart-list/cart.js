@@ -1,8 +1,7 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
 
-import {Card, CardMedia, Typography, CardContent, Link} from "@material-ui/core";
-import {withConfiguredCardClasses} from "../hoc";
+import {Card, CardMedia, Typography, CardContent, Link, withStyles} from "@material-ui/core";
 import {compose} from "../../utils";
 
 const CardItem = ({
@@ -33,17 +32,13 @@ const CardItem = ({
     </Card>
 );
 
-const adaptationSizes = {
-    mobile: {
-        maxWidth: 180, height: 280
-    },
-    desktop: {
-        maxWidth: 280, height: 590
-    }
+const styles = {
+    root: {maxWidth: 280},
+    media: {height: 590, maxHeight: "50vh"},
 };
 
 export default compose(
     inject('shop'),
     observer,
-    withConfiguredCardClasses(adaptationSizes)
+    withStyles(styles),
 )(CardItem);

@@ -1,7 +1,7 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
 
-import {Box,Grid,Typography} from "@material-ui/core";
+import {Box, Grid, Typography} from "@material-ui/core";
 import CartItem from "./cart";
 
 const WithoutCarts = () => (

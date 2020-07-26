@@ -1,5 +1,5 @@
 import ProductsPagedCollection from "./products-paged-collection";
-import {getEnv, types} from "mobx-state-tree";
+import {getEnv, getParent, types} from "mobx-state-tree";
 import SearchStore from "./search";
 
 const ProductsStore =
@@ -21,7 +21,7 @@ const ProductsStore =
                 getEnv(self).productsService
                     .fetchProducts()
                     .then(self.updateCollection)
-                    .catch(err => console.log(err))
+                    .catch((error) => getParent(self).error.make(error))
                     .finally(() => (self.markLoading(false)))
             },
             updateCollection(data) {

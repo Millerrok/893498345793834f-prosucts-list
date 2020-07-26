@@ -2,8 +2,9 @@ import React from 'react';
 import {Provider} from "mobx-react";
 
 import Container from '@material-ui/core/Container';
-import ProductsList from "../products-list";
+import ErrorBoundary from "../error-boundary";
 import CustomProgress from "../progress";
+import ProductsList from "../products";
 import shopStore from "../../store";
 
 class App extends React.Component {
@@ -11,9 +12,11 @@ class App extends React.Component {
         return (
             <Provider shop={shopStore}>
                 <CustomProgress/>
-                <Container>
-                    <ProductsList/>
-                </Container>
+                <ErrorBoundary>
+                    <Container>
+                        <ProductsList/>
+                    </Container>
+                </ErrorBoundary>
             </Provider>
         );
     }

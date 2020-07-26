@@ -1,9 +1,9 @@
 import React from "react";
 
-import imgSrc from "./indicator.png"
 import {Box, Card, CardContent, CardMedia, Typography, withStyles} from "@material-ui/core";
 import {compose} from "../../utils";
 import {inject, observer} from "mobx-react";
+import imgSrc from "./image"
 
 const ErrorIndicator = ({classes, shop}) => (
     <Box

@@ -1,5 +1,5 @@
-import ProductsRESTClient from "./rest"
 import ProductsStaticClient from "./static"
+import ProductsRESTClient from "./rest"
 
 export default {
     ProductsStaticClient,

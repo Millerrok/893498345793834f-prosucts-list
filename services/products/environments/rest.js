@@ -4,7 +4,6 @@ import {API, ENDPOINTS} from "../../urls";
 export default class ProductsRESTClient extends RESTClient {
     fetchProducts = async () => {
         const body = await this.request(API.makeUrl(ENDPOINTS.PRODUCTS));
-        console.log('fetched');
         return body.pageItems;
     };
 }

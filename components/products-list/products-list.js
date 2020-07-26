@@ -1,7 +1,8 @@
 import React from "react";
+
+import ListPagination from "../list-pagination";
 import SearchField from "../search";
 import CartList from "../cart-list";
-import ListPagination from "../list-pagination";
 
 class ProductsList extends React.Component {
     render() {

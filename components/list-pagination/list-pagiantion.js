@@ -1,6 +1,7 @@
-import Pagination from "@material-ui/lab/Pagination";
 import React from "react";
 import {inject, observer} from "mobx-react";
+
+import Pagination from "@material-ui/lab/Pagination";
 import {withStyles} from "@material-ui/core";
 import {compose} from "../../utils";
 

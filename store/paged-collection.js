@@ -1,12 +1,6 @@
-import {types} from "mobx-state-tree";
+import {chunkMap, updateMapByObject} from "../utils";
 import PaginationStore from "./pagination";
-import {chunkMap} from "../utils";
-
-const updateMapByObject = (map, obj) => {
-    for (let [key, value] of obj) {
-        map.set(key, value)
-    }
-};
+import {types} from "mobx-state-tree";
 
 export default function makePagedCollectionStore(itemType) {
     return types

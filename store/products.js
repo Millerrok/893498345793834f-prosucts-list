@@ -1,15 +1,15 @@
+import ProductsPagedCollection from "./products-paged-collection";
 import {getEnv, types} from "mobx-state-tree";
 import SearchStore from "./search";
-import ProductsPagedCollection from "./products-paged-collection";
 
-const ProductsStore2 =
+const ProductsStore =
     types
         .model('ProductsStore', {
-            isLoading: true,
             collection: types.optional(ProductsPagedCollection, {}),
             search: types.optional(SearchStore, {
                 query: ""
             }),
+            isLoading: true,
         })
         .actions(self => ({
             markLoading(loading) {
@@ -40,4 +40,4 @@ const ProductsStore2 =
             }
         }));
 
-export default ProductsStore2;
+export default ProductsStore;

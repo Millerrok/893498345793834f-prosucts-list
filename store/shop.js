@@ -1,11 +1,11 @@
 import {types} from "mobx-state-tree";
 import {detectMobile} from "../utils";
-import ProductsStore2 from "./products";
+import ProductsStore from "./products";
 
 const ShopStore =
     types
         .model('ShopStore', {
-            products: ProductsStore2,
+            products: ProductsStore,
         })
         .views(() => ({
             get isMobile() {

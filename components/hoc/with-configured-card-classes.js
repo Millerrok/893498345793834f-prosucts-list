@@ -1,5 +1,5 @@
-import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
+import {makeStyles} from "@material-ui/core/styles";
 
 const withConfiguredCardClasses = config => Wrapped => {
     return ({data, shop}) => {

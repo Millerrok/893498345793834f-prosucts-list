@@ -1,6 +1,7 @@
 import React from "react";
-import LinearProgress from "@material-ui/core/LinearProgress";
 import {inject, observer} from "mobx-react";
+
+import LinearProgress from "@material-ui/core/LinearProgress";
 import {compose} from "../../utils";
 
 const CustomProgress = ({shop: {products: {isLoading}}}) => {

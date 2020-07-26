@@ -1,8 +1,7 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
 import {inject, observer} from "mobx-react";
-import {withStyles} from "@material-ui/core";
+
+import {TextField, FormControl, withStyles} from "@material-ui/core";
 import {compose} from "../../utils";
 
 const SearchField = ({classes, shop: {products: {search: {update, query}}}}) => {

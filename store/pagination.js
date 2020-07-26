@@ -11,6 +11,7 @@ const PaginationStore = types
             self.currentPage = current
         },
         updateTotalPages(totalPages) {
+            self.updateCurrent(1);
             self.totalPages = totalPages
         }
     }));

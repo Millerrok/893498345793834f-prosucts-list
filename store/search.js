@@ -1,4 +1,4 @@
-import {types} from "mobx-state-tree";
+import {getParent, types} from "mobx-state-tree";
 
 const SearchStore = types
     .model('SearchStore', {
@@ -13,6 +13,8 @@ const SearchStore = types
     .actions(self => ({
         update(query) {
             self.query = query.trim();
+
+            getParent(self).updatePagesWithSearch()
         }
     }));
 

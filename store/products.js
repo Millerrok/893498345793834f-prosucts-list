@@ -5,10 +5,7 @@ import SearchStore from "./search";
 const ProductsStore =
     types
         .model('ProductsStore', {
-            collection: types.optional(ProductsPagedCollection, {}),
-            search: types.optional(SearchStore, {
-                query: ""
-            }),
+            collection: types.optional(ProductsPagedCollection, {data: []}),
             isLoading: true,
         })
         .actions(self => ({
@@ -30,13 +27,10 @@ const ProductsStore =
         }))
         .views(self => ({
             get list() {
-                const {search: {isEmpty, query}, collection: {data}} = self;
-
-                if (isEmpty) {
-                    return data
-                }
-
-                return data.filter(product => product.containInProductName(query))
+                return self.collection.list
+            } ,
+            get search() {
+                return self.collection.search
             }
         }));
 

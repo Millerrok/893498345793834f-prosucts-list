@@ -4,7 +4,9 @@ import {inject, observer} from "mobx-react";
 import {TextField, FormControl, withStyles} from "@material-ui/core";
 import {compose} from "../../utils";
 
-const SearchField = ({classes, shop: {products: {search: {update, query}}}}) => {
+const SearchField = ({classes, shop}) => {
+    const {update, query} = shop.products.search;
+
     const queryStringChanged = (e) => {
         update(e.target.value);
     };

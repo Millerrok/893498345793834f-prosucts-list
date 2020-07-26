@@ -6,12 +6,17 @@ import ErrorState from "./error";
 const ShopStore =
     types
         .model('ShopStore', {
-            products: ProductsStore,
+            products: types.optional(ProductsStore, {}),
             error: types.optional(ErrorState, {}),
         })
         .views(() => ({
             get isMobile() {
                 return detectMobile();
+            }
+        }))
+        .actions((self) => ({
+            afterCreate() {
+                self.products.loadProducts()
             }
         }));
 

@@ -1,10 +1,11 @@
 import React from "react";
-import {inject, observer} from "mobx-react";
 
 import {Card, CardMedia, Typography, CardContent, Link, withStyles} from "@material-ui/core";
 import {compose} from "../../utils";
+import {observer} from "mobx-react";
+import Tooltip from "@material-ui/core/Tooltip";
 
-const CardItem = ({
+const ProductItem = ({
                       data: {
                           name,
                           imageURL,
@@ -18,13 +19,17 @@ const CardItem = ({
             image={imageURL}
             title={name}/>
         <CardContent align="center">
-            <Link
-                tooltip={name}
-                component="button"
-                cursor="pointer"
-                noWrap>
-                {name}
-            </Link>
+            <Tooltip title={name} placement="top">
+                <Link
+                    onClick={e => e.preventDefault()}
+                    display="block"
+                    width="90%"
+                    href="#"
+                    noWrap
+                >
+                    {name}
+                </Link>
+            </Tooltip>
             <Typography variant="subtitle1" color="textSecondary">
                 Price: {price}
             </Typography>
@@ -34,11 +39,10 @@ const CardItem = ({
 
 const styles = {
     root: {maxWidth: 280},
-    media: {height: 590, maxHeight: "50vh"},
+    media: {height: 590, maxHeight: "40vh"},
 };
 
 export default compose(
-    inject('shop'),
     observer,
     withStyles(styles),
-)(CardItem);
+)(ProductItem);

@@ -1,20 +1,5 @@
-import {addMiddleware, onSnapshot} from "mobx-state-tree";
-
 import ShopStore from "./shop";
-import {ProductsRESTClient} from "../services/products/environments";
-import {actionLogger} from "mst-middlewares";
 
-const initialState = {
-    products: {}
+export {
+    ShopStore
 };
-
-const productsService = new ProductsRESTClient();
-const shopStore = ShopStore.create(initialState, {productsService});
-
-onSnapshot(shopStore, t => {
-    console.log(`snapshop:`);
-    console.log(t)
-});
-addMiddleware(shopStore, actionLogger);
-
-export default shopStore;

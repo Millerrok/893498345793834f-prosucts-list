@@ -11,10 +11,10 @@ const SearchStore = types
         }
     }))
     .actions(self => ({
-        update(query) {
+        update(query = '') {
             self.query = query.trim();
 
-            getParent(self).updatePagesWithSearch()
+            getParent(self).updateWithSearch()
         }
     }));
 

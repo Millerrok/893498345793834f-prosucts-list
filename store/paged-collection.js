@@ -1,13 +1,11 @@
 import {chunkMap, updateMapByObject} from "../utils";
 import PaginationStore from "./pagination";
 import {types} from "mobx-state-tree";
-import SearchStore from "./search";
 
 export default function makePagedCollectionStore(itemType) {
     return types
         .model('PagedCollectionStore', {
             pagination: types.optional(PaginationStore, {}),
-            search: types.optional(SearchStore, {}),
             pages: types.map(types.array(itemType)),
             data: types.frozen([])
         })
@@ -24,17 +22,7 @@ export default function makePagedCollectionStore(itemType) {
             updateData(data) {
                 self.data = data;
                 self.updatePages(self.data);
-            },
-            updatePagesWithSearch() {
-                const {search: {query}} = self;
-                const filtered = self.data.filter(product =>
-                    product.productName
-                        .toLowerCase()
-                        .includes(query.toLowerCase())
-                );
-
-                self.updatePages(filtered)
-            },
+            }
         }))
         .views(self => ({
             get list() {

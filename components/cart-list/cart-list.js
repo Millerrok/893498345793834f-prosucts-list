@@ -2,7 +2,7 @@ import React from "react";
 import {inject, observer} from "mobx-react";
 
 import {Box, Grid, Typography} from "@material-ui/core";
-import CartItem from "./cart";
+import ProductItem from "./cart";
 
 const WithoutCarts = () => (
     <Typography variant="subtitle1" component="p" color="textSecondary">
@@ -12,10 +12,10 @@ const WithoutCarts = () => (
 
 @inject('shop') @observer
 class CartList extends React.Component {
-    makeCart(cart) {
+    makeItem(cart) {
         return (
             <Grid item xs={6} sm={4} md={3} key={cart.code} align="center">
-                <CartItem data={cart}/>
+                <ProductItem data={cart}/>
             </Grid>
         )
     }
@@ -33,7 +33,7 @@ class CartList extends React.Component {
         return (
             <Box flexGrow={1}>
                 <Grid container spacing={2} justify="space-evenly">
-                    {carts.map(this.makeCart)}
+                    {carts.map(this.makeItem)}
                 </Grid>
             </Box>
         )

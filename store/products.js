@@ -1,35 +1,55 @@
 import ProductsPagedCollection from "./products-paged-collection";
 import {getEnv, getParent, types} from "mobx-state-tree";
+import {flow} from "mobx";
+import SearchStore from "./search";
 
 const ProductsStore =
     types
         .model('ProductsStore', {
             collection: types.optional(ProductsPagedCollection, {data: []}),
+            search: types.optional(SearchStore, {}),
             isLoading: true,
         })
         .actions(self => ({
             markLoading(loading) {
                 self.isLoading = loading
             },
-            loadProducts() {
+            loadProducts: flow(function* loadProducts() {
                 self.markLoading(true);
 
-                getEnv(self).productsService
-                    .fetchProducts()
-                    .then(self.updateCollection)
-                    .catch((error) => getParent(self).error.make(error))
-                    .finally(() => (self.markLoading(false)))
-            },
-            updateCollection(data) {
+                try {
+                    const data = yield getEnv(self).productsService.fetchProducts();
+
+                    self.updateData(data);
+                    self.markLoading(false);
+                } catch (error) {
+                    getParent(self).error.make(error)
+                }
+            }),
+            updateData(data) {
                 self.collection.updateData(data);
+            },
+            updateWithSearch() {
+                self.collection.updatePages(self.filteredData);
             },
         }))
         .views(self => ({
             get list() {
                 return self.collection.list
-            } ,
-            get search() {
-                return self.collection.search
+            },
+            get pagination() {
+                return self.collection.pagination
+            },
+            get filteredData() {
+                const {search: {query}} = self;
+                return self.collection.data.filter(product =>
+                    product.productName
+                        .toLowerCase()
+                        .includes(query.toLowerCase())
+                );
+            },
+            get nameList() {
+                return self.collection.data.map(product => product.productName);
             }
         }));
 

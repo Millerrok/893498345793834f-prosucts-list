@@ -8,7 +8,7 @@ import {compose} from "../../utils";
 const MINIMAL_PAGES_COUNT_TO_SHOW = 2;
 
 const ListPagination = ({shop, classes}) => {
-    const {currentPage, totalPages, updateCurrent} = shop.products.collection.pagination;
+    const {currentPage, totalPages, updateCurrent} = shop.products.pagination;
     const onPageChanged = (event, value) => {
         updateCurrent(value);
     };

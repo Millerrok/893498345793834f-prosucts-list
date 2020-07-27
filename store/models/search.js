@@ -13,8 +13,7 @@ const SearchStore = types
     .actions(self => ({
         update(query = '') {
             self.query = query.trim();
-
-            getParent(self).updateWithSearch()
+            getParent(self).updateWithSearch();
         }
     }));
 

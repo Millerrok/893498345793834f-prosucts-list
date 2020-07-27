@@ -12,7 +12,7 @@ const ProductsStore =
         })
         .actions(self => ({
             markLoading(loading) {
-                self.isLoading = loading
+                self.isLoading = loading;
             },
             loadProducts: flow(function* loadProducts() {
                 self.markLoading(true);
@@ -35,10 +35,10 @@ const ProductsStore =
         }))
         .views(self => ({
             get list() {
-                return self.collection.list
+                return self.collection.list;
             },
             get pagination() {
-                return self.collection.pagination
+                return self.collection.pagination;
             },
             get filteredData() {
                 const {search: {query}} = self;

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 const CartList = ({children}) => {
     if (!children.length) {
-        return <WithoutCarts/>
+        return <WithoutCarts/>;
     }
 
     return (
@@ -22,4 +22,4 @@ CartList.propTypes = {
 };
 
 
-export default CartList
+export default CartList;

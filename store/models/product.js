@@ -20,10 +20,10 @@ const ProductStore = types
         },
         get images() {
             if (getRoot(self).isMobile) {
-                return self.mobileImageURLs
+                return self.mobileImageURLs;
             }
 
-            return self.imageURLs
+            return self.imageURLs;
         },
         get imageURL() {
             return self.images[self.imageIndex];

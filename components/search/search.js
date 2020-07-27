@@ -6,7 +6,6 @@ import {inject, observer} from "mobx-react";
 
 const SearchField = ({classes, search: {update, query}}) => {
     const queryStringChanged = (e) => {
-        e.stopPropagation()
         update(e.target.value);
     };
 
@@ -32,9 +31,7 @@ SearchField.protoType = {
 };
 
 const styles = {
-    root: {
-        margin: '15px auto',
-    }
+    root: {margin: '15px auto'}
 };
 
 export default compose(

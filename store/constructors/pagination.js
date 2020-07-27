@@ -8,11 +8,11 @@ const PaginationStore = types
     })
     .actions(self => ({
         updateCurrent(current) {
-            self.currentPage = current
+            self.currentPage = current;
         },
         updateTotalPages(totalPages) {
+            self.totalPages = totalPages;
             self.updateCurrent(1);
-            self.totalPages = totalPages
         }
     }));
 

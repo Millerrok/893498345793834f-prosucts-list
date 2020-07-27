@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 @inject('shop') @observer
 class ProductsList extends React.Component {
     makeItem(cart) {
-        return (<ProductCard key={cart.code} data={cart}/>)
+        return (<ProductCard key={cart.code} data={cart}/>);
     }
 
     render() {

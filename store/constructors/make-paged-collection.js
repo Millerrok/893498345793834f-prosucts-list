@@ -12,10 +12,11 @@ export default (itemType) => (
         .actions(self => ({
             updatePagesMap(pages) {
                 self.pages.clear();
-                updateMapByObject(self.pages, pages)
+                updateMapByObject(self.pages, pages);
             },
             updatePages(newData) {
                 const pagesMap = chunkMap(newData, self.pagination.resultPerPage);
+
                 self.updatePagesMap(pagesMap);
                 self.pagination.updateTotalPages(self.pages.size);
             },

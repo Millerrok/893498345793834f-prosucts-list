@@ -7,12 +7,12 @@ const ErrorState =
         })
         .views(self => ({
             get exist() {
-                return self.message.length
+                return self.message.length;
             }
         }))
         .actions(self => ({
             clean() {
-                self.message = ''
+                self.message = '';
             },
             make(message) {
                 self.message = message.toString();

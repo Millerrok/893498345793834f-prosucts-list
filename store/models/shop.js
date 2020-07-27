@@ -16,7 +16,7 @@ const ShopStore =
         }))
         .actions((self) => ({
             afterCreate() {
-                self.products.loadProducts()
+                self.products.loadProducts();
             }
         }));
 

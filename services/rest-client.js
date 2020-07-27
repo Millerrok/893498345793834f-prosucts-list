@@ -34,6 +34,6 @@ export default class RESTClient {
 
         const body = await response.json();
 
-        return body
+        return body;
     }
 }

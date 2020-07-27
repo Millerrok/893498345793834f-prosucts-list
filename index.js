@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './components/app';
 import {ShopStore} from './store';
 import {ProductsRESTClient} from './services/products/environments';
-import 'mobx-react-lite/batchingForReactDom' // fix batching problem
+import 'mobx-react-lite/batchingForReactDom'; // fix batching problem
 
 const productsService = new ProductsRESTClient();
 const shopStore = ShopStore.create({}, {productsService});

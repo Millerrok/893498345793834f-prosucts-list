@@ -21,10 +21,11 @@ const ProductsStore =
                     const data = yield getEnv(self).productsService.fetchProducts();
 
                     self.updateData(data);
-                    self.markLoading(false);
                 } catch (error) {
                     getParent(self).error.make(error)
                 }
+
+                self.markLoading(false);
             }),
             updateData(data) {
                 self.collection.updateData(data);

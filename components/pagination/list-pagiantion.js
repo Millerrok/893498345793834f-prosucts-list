@@ -1,27 +1,23 @@
-import React from "react";
-import {inject, observer} from "mobx-react";
+import React from 'react';
+import Pagination from '@material-ui/lab/Pagination';
+import {withStyles} from '@material-ui/core';
+import {compose} from '../../utils';
+import PropTypes from 'prop-types';
 
-import Pagination from "@material-ui/lab/Pagination";
-import {withStyles} from "@material-ui/core";
-import {compose} from "../../utils";
-
-const MINIMAL_PAGES_COUNT_TO_SHOW = 2;
-
-const ListPagination = ({shop, classes}) => {
-    const {currentPage, totalPages, updateCurrent} = shop.products.pagination;
+const ListPagination = ({pagination, classes, minimumPageCount}) => {
     const onPageChanged = (event, value) => {
-        updateCurrent(value);
+        pagination.updateCurrent(value);
     };
 
-    if (totalPages < MINIMAL_PAGES_COUNT_TO_SHOW) {
+    if (pagination.totalPages < minimumPageCount) {
         return null;
     }
 
     return (
         <Pagination
             className={classes.pagination}
-            count={totalPages}
-            page={currentPage}
+            count={pagination.totalPages}
+            page={pagination.currentPage}
             defaultPage={6}
             siblingCount={0}
             boundaryCount={2}
@@ -29,17 +25,31 @@ const ListPagination = ({shop, classes}) => {
     );
 };
 
+ListPagination.protoType = {
+    minimumPageCount: PropTypes.number.isRequired,
+    classes: PropTypes.shape({
+        pagination: PropTypes.object.isRequired,
+    }),
+    pagination: PropTypes.shape({
+        updateCurrent: PropTypes.func.isRequired,
+        totalPages: PropTypes.number.isRequired,
+        currentPage: PropTypes.number.isRequired,
+    }),
+};
+
+ListPagination.defaultProps = {
+    minimumPageCount: 2,
+};
+
 const styles = {
     pagination: {
         margin: '15px 0',
         '& > ul': {
-            justifyContent: 'center'
+            justifyContent: 'center',
         }
     }
 };
 
 export default compose(
     withStyles(styles),
-    inject('shop'),
-    observer,
 )(ListPagination);

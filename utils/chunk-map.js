@@ -1,4 +1,4 @@
-function chunkMap(myArray, chunk_size) {
+export default (myArray, chunk_size) => {
     let arrayLength = myArray.length;
     let result = {};
 
@@ -10,5 +10,3 @@ function chunkMap(myArray, chunk_size) {
 
     return result;
 }
-
-export default chunkMap;

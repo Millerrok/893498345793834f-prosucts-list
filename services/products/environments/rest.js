@@ -1,5 +1,5 @@
-import RESTClient from "../../rest-client";
-import {API, ENDPOINTS} from "../../urls";
+import RESTClient from '../../rest-client';
+import {API, ENDPOINTS} from '../../urls';
 
 export default class ProductsRESTClient extends RESTClient {
     fetchProducts = async () => {

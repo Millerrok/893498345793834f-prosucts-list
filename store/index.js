@@ -1,4 +1,4 @@
-import ShopStore from "./shop";
+import ShopStore from './models/shop';
 
 export {
     ShopStore

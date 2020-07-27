@@ -1,3 +1,3 @@
-import CustomProgress from "./progress";
+import CustomProgress from './progress';
 
 export default CustomProgress;

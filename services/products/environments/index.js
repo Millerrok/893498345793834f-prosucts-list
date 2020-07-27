@@ -1,4 +1,4 @@
-import ProductsRESTClient from "./rest"
+import ProductsRESTClient from './rest'
 
 export {
     ProductsRESTClient

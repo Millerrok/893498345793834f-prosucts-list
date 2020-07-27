@@ -1,43 +1,25 @@
-import React from "react";
-import {inject, observer} from "mobx-react";
+import React from 'react';
+import {Box, Grid} from '@material-ui/core';
+import WithoutCarts from './empty-list';
+import PropTypes from 'prop-types'
 
-import {Box, Grid, Typography} from "@material-ui/core";
-import ProductItem from "./cart";
+const CartList = ({children}) => {
+    if (!children.length) {
+        return <WithoutCarts/>
+    }
 
-const WithoutCarts = () => (
-    <Typography variant="subtitle1" component="p" color="textSecondary">
-        Has no data to show
-    </Typography>
-);
-
-@inject('shop') @observer
-class CartList extends React.Component {
-    makeItem(cart) {
-        return (
-            <Grid item xs={6} sm={4} md={3} key={cart.code} align="center">
-                <ProductItem data={cart}/>
+    return (
+        <Box flexGrow={1}>
+            <Grid container spacing={2} justify='space-evenly'>
+                {children}
             </Grid>
-        )
-    }
+        </Box>
+    )
+};
 
-    componentDidMount() {
-        this.props.shop.products.loadProducts();
-    }
+CartList.propTypes = {
+    children: PropTypes.arrayOf(PropTypes.node).isRequired,
+};
 
-    render() {
-        const {list: carts} = this.props.shop.products;
-        if (!carts.length) {
-            return <WithoutCarts/>
-        }
-
-        return (
-            <Box flexGrow={1}>
-                <Grid container spacing={2} justify="space-evenly">
-                    {carts.map(this.makeItem)}
-                </Grid>
-            </Box>
-        )
-    }
-}
 
 export default CartList

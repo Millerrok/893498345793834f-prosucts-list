@@ -1,6 +1,7 @@
-import React, {Component} from "react";
-import ErrorIndicator from "../error-indicator";
-import {inject, observer} from "mobx-react";
+import React, {Component} from 'react';
+import ErrorIndicator from '../error-indicator';
+import {inject, observer} from 'mobx-react';
+import PropTypes from 'prop-types'
 
 @inject('shop') @observer
 class ErrorBoundary extends Component {
@@ -11,13 +12,24 @@ class ErrorBoundary extends Component {
     }
 
     render() {
-        if (!this.props.shop.error.exist) {
-            return this.props.children;
+        const {shop, children} = this.props;
+        const {exist, message} = shop.error;
+
+        if (!exist) {
+            return children;
         }
 
         return (
-            <ErrorIndicator/>
+            <ErrorIndicator message={message}/>
         );
+    }
+
+    static get propTypes() {
+        return {
+            shop: PropTypes.shape({
+                error: PropTypes.object.isRequired,
+            })
+        }
     }
 }
 

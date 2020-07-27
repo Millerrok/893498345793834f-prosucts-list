@@ -1,5 +1,5 @@
-import React from 'react';
-import Container from '@material-ui/core/Container';
+import React, {Fragment} from 'react';
+import {Container, CssBaseline} from '@material-ui/core';
 import ErrorBoundary from '../error-boundary';
 import CustomProgress from '../progress';
 import ProductsList from '../products';
@@ -8,7 +8,8 @@ import Header from '../header';
 class App extends React.Component {
     render() {
         return (
-            <React.Fragment>
+            <Fragment>
+                <CssBaseline/>
                 <CustomProgress/>
                 <ErrorBoundary>
                     <Container>
@@ -16,7 +17,7 @@ class App extends React.Component {
                         <ProductsList/>
                     </Container>
                 </ErrorBoundary>
-            </React.Fragment>
+            </Fragment>
         );
     }
 }

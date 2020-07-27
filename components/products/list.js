@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {inject, observer} from 'mobx-react';
 import ListPagination from '../pagination';
 import SearchField from '../search';
@@ -20,13 +20,13 @@ class ProductsList extends React.Component {
         }
 
         return (
-            <React.Fragment>
+            <Fragment>
                 <SearchField search={search}/>
                 <CartList>
                     {list.map(this.makeItem)}
                 </CartList>
                 <ListPagination pagination={pagination}/>
-            </React.Fragment>
+            </Fragment>
         );
     }
 

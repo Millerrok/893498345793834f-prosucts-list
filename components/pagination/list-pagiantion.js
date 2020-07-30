@@ -6,17 +6,17 @@ import PropTypes from 'prop-types';
 
 const ListPagination = ({pagination, classes, minimumPageCount}) => {
     const onPageChanged = (event, value) => {
-        pagination.updateCurrent(value);
+        pagination.updateCurrentPage(value);
     };
 
-    if (pagination.totalPages < minimumPageCount) {
+    if (pagination.pagesCount < minimumPageCount) {
         return null;
     }
 
     return (
         <Pagination
             className={classes.pagination}
-            count={pagination.totalPages}
+            count={pagination.pagesCount}
             page={pagination.currentPage}
             defaultPage={6}
             siblingCount={0}

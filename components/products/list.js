@@ -5,41 +5,40 @@ import SearchField from '../search';
 import CartList from '../cart-list';
 import ProductCard from './cart';
 import PropTypes from 'prop-types';
+import {compose} from "../../utils";
 
-@inject('shop') @observer
-class ProductsList extends React.Component {
-    makeItem(cart) {
+const ProductsList = (props) => {
+    const {list, pagination, search} = props.shop.products;
+
+    if (!list) {
+        return null;
+    }
+
+    const makeItem = (cart) => {
         return (<ProductCard key={cart.code} data={cart}/>);
-    }
+    };
 
-    render() {
-        const {list, pagination, search} = this.props.shop.products;
+    return (
+        <Fragment>
+            <SearchField search={search}/>
+            <CartList>
+                {list.map(makeItem)}
+            </CartList>
+            <ListPagination pagination={pagination}/>
+        </Fragment>
+    )
+};
 
-        if (!list) {
-            return null;
-        }
+ProductCard.protoType = {
+    shop: PropTypes.shape({
+        products: PropTypes.shape({
+            pagination: PropTypes.object.isRequired,
+            list: PropTypes.array.isRequired,
+        })
+    })
+};
 
-        return (
-            <Fragment>
-                <SearchField search={search}/>
-                <CartList>
-                    {list.map(this.makeItem)}
-                </CartList>
-                <ListPagination pagination={pagination}/>
-            </Fragment>
-        );
-    }
-
-    static get propTypes() {
-        return {
-            shop: PropTypes.shape({
-                products: PropTypes.shape({
-                    pagination: PropTypes.object.isRequired,
-                    list: PropTypes.array.isRequired,
-                })
-            })
-        }
-    }
-}
-
-export default ProductsList;
+export default compose(
+    inject('shop'),
+    observer,
+)(ProductsList);

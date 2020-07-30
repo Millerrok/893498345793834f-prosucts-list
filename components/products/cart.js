@@ -2,7 +2,6 @@ import React from 'react';
 import {Card, CardMedia, Typography, CardContent, Link, withStyles, Grid, Tooltip} from '@material-ui/core';
 import {compose} from '../../utils';
 import PropTypes from 'prop-types';
-import {observer} from "mobx-react";
 
 const ProductCard = ({data: {name, imageURL, price}, classes}) => (
     <Grid item xs={6} sm={4} md={3} align='center'>
@@ -49,6 +48,5 @@ const styles = {
 };
 
 export default compose(
-    observer,
     withStyles(styles),
 )(ProductCard);

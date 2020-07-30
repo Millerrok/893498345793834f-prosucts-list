@@ -1,13 +1,15 @@
-import ProductsPagedCollection from './products-paged-collection';
 import {getEnv, getParent, types} from 'mobx-state-tree';
 import {flow} from 'mobx';
 import SearchStore from './search';
+import PaginationStore from "./pagination";
+import ProductStore from "./product";
 
 const ProductsStore =
     types
         .model('ProductsStore', {
-            collection: types.optional(ProductsPagedCollection, {data: []}),
+            pagination: types.optional(PaginationStore, {}),
             search: types.optional(SearchStore, {}),
+            data: types.optional(types.array(ProductStore), []),
             isLoading: true,
         })
         .actions(self => ({
@@ -28,25 +30,27 @@ const ProductsStore =
                 self.markLoading(false);
             }),
             updateData(data) {
-                self.collection.updateData(data);
-            },
-            updateWithSearch() {
-                self.collection.updatePages(self.filteredData);
+                self.data = data;
             },
         }))
         .views(self => ({
             get list() {
-                return self.collection.list;
+                const resultPerPage = self.pagination.resultPerPage;
+                const idx = self.pagination.currentPage - 1;
+
+                return self.preparedData.slice(idx, idx + resultPerPage) || [];
             },
-            get pagination() {
-                return self.collection.pagination;
-            },
-            get filteredData() {
-                const {search: {query}} = self;
-                return self.collection.data.filter(product =>
+            get preparedData() {
+                const {search} = self;
+
+                if (search.isEmpty) {
+                    return self.data;
+                }
+
+                return self.data.filter(product =>
                     product.productName
                         .toLowerCase()
-                        .includes(query.toLowerCase())
+                        .includes(search.query.toLowerCase())
                 );
             }
         }));

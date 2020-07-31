@@ -2,6 +2,7 @@ import {getEnv, getParent, types} from "mobx-state-tree";
 import PaginationStore from "./models/pagination";
 import SearchStore from "./models/search";
 import {flow} from "mobx";
+import {Filter} from "./filter-constructor";
 
 export default ({name, itemModel, filter, loadServiceName}) => {
     return types
@@ -50,7 +51,13 @@ export default ({name, itemModel, filter, loadServiceName}) => {
             get preparedData() {
                 const {search} = self;
 
-                if (search.isEmpty || !filter) {
+                if (!(filter instanceof Filter)) {
+                    console.error('Filtering is ignored: filter need to be instance of Filter');
+
+                    return self.data;
+                }
+
+                if (search.isEmpty) {
                     return self.data;
                 }
 
@@ -59,6 +66,6 @@ export default ({name, itemModel, filter, loadServiceName}) => {
                         .toLowerCase()
                         .includes(search.query.toLowerCase())
                 );
-            }
+            },
         }));
 };

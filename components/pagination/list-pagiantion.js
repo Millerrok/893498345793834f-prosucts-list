@@ -17,7 +17,7 @@ const ListPagination = ({pagination, classes, minimumPageCount}) => {
         <Pagination
             className={classes.pagination}
             count={pagination.pagesCount}
-            page={pagination.currentPage}
+            page={pagination.current}
             defaultPage={6}
             siblingCount={0}
             boundaryCount={2}

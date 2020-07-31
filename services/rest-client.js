@@ -12,8 +12,8 @@ export class CustomError {
 
         return CustomError.makeError(error.message);
     }
-    
-   static makeError(message) {
+
+    static makeError(message) {
         throw Error(message);
     }
 }
@@ -35,5 +35,10 @@ export default class RESTClient {
         const body = await response.json();
 
         return body;
+    }
+
+    // abstract
+    fetch() {
+        throw new Error('This method need to be implemented');
     }
 }

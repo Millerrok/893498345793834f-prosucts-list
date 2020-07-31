@@ -10,11 +10,6 @@ const ProductStore = types
         imageIndex: 0
     })
     .views(self => ({
-        containInProductName(query) {
-            return self.productName
-                .toLowerCase()
-                .includes(query.toLowerCase());
-        },
         get name() {
             return self.productName;
         },

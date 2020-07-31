@@ -2,7 +2,6 @@ import React from 'react';
 import {TextField, FormControl, withStyles} from '@material-ui/core';
 import {compose} from '../../utils';
 import PropTypes from 'prop-types';
-import {inject, observer} from "mobx-react";
 
 const SearchField = ({classes, search: {update, query}}) => {
     const queryStringChanged = (e) => {

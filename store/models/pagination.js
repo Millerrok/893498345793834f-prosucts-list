@@ -1,4 +1,4 @@
-import { getParent, types} from 'mobx-state-tree';
+import {getParent, types} from 'mobx-state-tree';
 
 const PaginationStore = types
     .model('PaginationStore', {
@@ -11,6 +11,9 @@ const PaginationStore = types
             const data = getParent(self).preparedData;
 
             return data && data.length / self.resultPerPage;
+        },
+        get current() {
+            return self.currentPage <= self.pagesCount ? self.currentPage : 1;
         },
     }))
     .actions(self => ({

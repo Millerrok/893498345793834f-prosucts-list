@@ -7,14 +7,13 @@ import ProductStore from "./product";
 const ProductsStore =
     types
         .model('ProductsStore', {
+            data: types.optional(types.array(ProductStore), []),
             pagination: types.optional(PaginationStore, {}),
             search: types.optional(SearchStore, {}),
-            data: types.optional(types.array(ProductStore), []),
-            isLoading: true,
         })
         .actions(self => ({
             markLoading(loading) {
-                self.isLoading = loading;
+                getParent(self).toggleLoading(loading);
             },
             loadProducts: flow(function* loadProducts() {
                 self.markLoading(true);

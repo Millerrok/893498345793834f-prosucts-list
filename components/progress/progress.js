@@ -4,7 +4,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import {compose} from '../../utils';
 import PropTypes from 'prop-types';
 
-const CustomProgress = ({shop: {products: {isLoading}}}) => {
+const CustomProgress = ({shop: {isLoading}}) => {
     if (!isLoading) {
         return null;
     }
@@ -16,9 +16,7 @@ const CustomProgress = ({shop: {products: {isLoading}}}) => {
 
 CustomProgress.protoType = {
     shop: PropTypes.shape({
-        products: PropTypes.shape({
-            isLoading: PropTypes.bool.isRequired
-        })
+        isLoading: PropTypes.bool.isRequired
     }),
 };
 

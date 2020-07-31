@@ -35,7 +35,5 @@ const styles = {
 };
 
 export default compose(
-    inject('shop'),
-    observer,
     withStyles(styles),
 )(SearchField);

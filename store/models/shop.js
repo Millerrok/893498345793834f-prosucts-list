@@ -8,6 +8,7 @@ const ShopStore =
         .model('ShopStore', {
             products: types.optional(ProductsStore, {}),
             error: types.optional(ErrorState, {}),
+            isLoading: true,
         })
         .views(() => ({
             get isMobile() {
@@ -17,6 +18,9 @@ const ShopStore =
         .actions((self) => ({
             afterCreate() {
                 self.products.loadProducts();
+            },
+            toggleLoading(isLoading) {
+                self.isLoading = typeof isLoading === 'boolean' ? isLoading : !self.isLoading;
             }
         }));
 

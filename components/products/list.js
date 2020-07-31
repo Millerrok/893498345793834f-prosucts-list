@@ -6,6 +6,7 @@ import CartList from '../cart-list';
 import ProductCard from './cart';
 import PropTypes from 'prop-types';
 import {compose} from "../../utils";
+import CardItem from "../cart-list/cart-item";
 
 const ProductsList = (props) => {
     const {list, pagination, search} = props.shop.products;
@@ -15,7 +16,7 @@ const ProductsList = (props) => {
     }
 
     const makeItem = (cart) => {
-        return (<ProductCard key={cart.code} data={cart}/>);
+        return (<CardItem key={cart.code} ><ProductCard data={cart}/></CardItem>);
     };
 
     return (
